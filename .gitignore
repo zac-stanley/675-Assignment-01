@@ -35,3 +35,7 @@ bin-release/
 *.qix
 *.shp
 *.shx
+
+# Directories #
+##############
+temp/
