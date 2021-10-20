@@ -14,3 +14,8 @@
 
 ### Process workflow
 1. Created **index.html** file using `echo > index.html`
+2. Copied HTML/CSS boilerplate to index.html
+3. Staged and commited changes to master branch using the following commands:
+    1. `git add index.html`
+    2. `git commit -m "add boilerplate to index.html"`
+4. Verified results with `git status` command
