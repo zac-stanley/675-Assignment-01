@@ -7,4 +7,6 @@
 
 #### Datasets and Sources:
 1. [Bike Paths ](http://coagisweb.cabq.gov/datadownload/biketrails.zip) - City of Albuquerque GIS
-Bike Paths 
+2. [Open Space ](http://coagisweb.cabq.gov/datadownload/openspace.zip) - City of Albuquerque GIS
+3. [Parks ](http://coagisweb.cabq.gov/datadownload/parks.zip) - City of Albuquerque GIS
+4. [Cartographic Boundary Files ](https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_ua10_500k.zip) - US Census Bureau
