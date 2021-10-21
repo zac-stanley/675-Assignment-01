@@ -38,6 +38,9 @@
 5. Repeat these steps for remaining datasets
 
 #### Convert shapefiles to GeoJSON with ogr2ogr
-1. Navigate to the sub-directory holding biketrails.shp  *biketrails*
+1. Navigate to the sub-directory holding biketrails.shp - *biketrails*
 2. Run the `ogr2ogr -f "GeoJSON" ../bike-trails.json biketrails_4326.shp` command to convert the re-projected shapefile to a geoJSON and move it up one directory to *data/*
 3. Repeat these steps for the remaining three shapefiles.
+
+#### Create Leaflet Basemap
+1. Add CSS, HTML and JavaScript to index.html to create a basic leaflet basemap
