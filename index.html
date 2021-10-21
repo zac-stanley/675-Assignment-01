@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 
     <title>HTML5 Template</title>
 
     <style>
-      /* CSS rules here */
+        /* CSS rules here */
+        /* select both the body and the map */
+        body,
+        #map {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script>
-      // JavaScript goes here
+        const options = {
+            center: [30, -26],
+            zoom: 2,
+        };
+
+        const map = L.map('map', options);
+
+        L.tileLayer(
+            'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+            {
+                attribution:
+                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+            }
+        ).addTo(map);
     </script>
-  </body>
+</body>
+
 </html>
