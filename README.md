@@ -29,9 +29,15 @@
 1. Use windows extractor for this task
 2. Delete *.zip files with `del *.zip` command
 
-#### Explore the data with GDAL
+#### Explore the data with ogr2ogr
 1. Navigate to subfolder in data directory
 2. Use `ogrinfo -so biketrails.shp biketrails` to acquire the summary information on the shapefile.
 3. The CRS for this dataset is not what we want for our web mapping purposes (NAD83(HARN) / New Mexico Central (ftUS)), thus we ned to project/transform it.
-4. Use ` ogr2ogr biketrails_4326.shp -t_srs "EPSG:4326" biketrails.shp` to convert the shapefile to WGS84 for web mapping
+4. Use `ogr2ogr biketrails_4326.shp -t_srs "EPSG:4326" biketrails.shp` to convert the shapefile to WGS84 for web mapping
+5. Verify projection change was successful `ogrinfo -so biketrails_4326.shp biketrails_4326`
 5. Repeat these steps for remaining datasets
+
+#### Convert shapefiles to GeoJSON with ogr2ogr
+1. Navigate to the sub-directory holding biketrails.shp  *biketrails*
+2. Run the `ogr2ogr -f "GeoJSON" ../bike-trails.json biketrails_4326.shp` command to convert the re-projected shapefile to a geoJSON and move it up one directory to *data/*
+3. Repeat these steps for the remaining three shapefiles.
