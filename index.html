@@ -26,11 +26,19 @@
 <body>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
         const options = {
-            center: [30, -26],
-            zoom: 2,
-        };
+            center: [35.08, -106.65],
+            zoom: 11,
+            minZoom: 11,
+            maxZoom: 16,
+            maxBounds: [
+                [35.35, -106.87],
+                [34.92, -106.40],
+            ],
+            };
 
         const map = L.map('map', options);
 
@@ -43,6 +51,18 @@
                 maxZoom: 19,
             }
         ).addTo(map);
+
+        $.when(
+                $.getJSON('data/urban-areas.json'),
+                $.getJSON('data/parks.json'),
+                $.getJSON('data/open-space.json'),
+                $.getJSON('data/bike-trails.json')
+            ).done(function (urbanAreasData, parksData, openSpaceData, BikeTrailsData) {
+                L.geoJson(urbanAreasData).addTo(map);
+                L.geoJson(parksData).addTo(map);
+                L.geoJson(openSpaceData).addTo(map);
+                L.geoJson(BikeTrailsData).addTo(map);
+            });
     </script>
 </body>
 

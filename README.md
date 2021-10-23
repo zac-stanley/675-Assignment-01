@@ -1,10 +1,10 @@
 ### 675-Assignment-01 - Albuquerque Bikeway Connectvity to Parks and Open Space
 #### Proposed workflow:
-1. Symbolize trails to show existing and proposed bike trails - use theis to create figure ground
-2. Merge parks and open space shapefiles into a single file or symbolize - we may have to make fields match for this to work
+1. Symbolize trails by sruface type - use this to create figure ground
+2. Set 'Name' field to title case in QGIS because these will be used for tooltips in web map and should look the same.
 3. Filter dataset so only Albuquerque cartographic boundary is displayed
-3. Verify that CRS on all datasets 
-4. Commit all data to JSON
+3. Verify that CRS on all datasets is 4326/WGS84
+4. Convert all data to geoJSON
 
 #### Datasets and Sources:
 1. [Bike Paths ](http://coagisweb.cabq.gov/datadownload/biketrails.zip) - City of Albuquerque GIS
@@ -44,3 +44,8 @@
 
 #### Create Leaflet Basemap
 1. Add CSS, HTML and JavaScript to index.html to create a basic leaflet basemap
+
+#### Create a Branch for Fleshing Out Web Map
+1. Create new branch using `git checkout -b 'map-symbology'`
+2. Load initial datasets into Leaflet using JQuery and the .when() method
+3. Once loaded merge this branch back to master
