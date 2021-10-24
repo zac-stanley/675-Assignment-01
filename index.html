@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 
-    <title>HTML5 Template</title>
+    <title>Bikeways and Parklands: Albuquerque, NM</title>
 
     <style>
         /* CSS rules here */
@@ -19,6 +19,7 @@
             bottom: 0;
             margin: 0;
             padding: 0;
+            background: rgba( 64, 40, 26)
         }
     </style>
 </head>
@@ -31,8 +32,8 @@
     <script>
         const options = {
             center: [35.08, -106.65],
-            zoom: 11,
-            minZoom: 3,
+            zoom: 10.5,
+            minZoom: 10.5,
             maxZoom: 16,
             maxBounds: [
                 [35.35, -106.87],
@@ -42,27 +43,99 @@
 
         const map = L.map('map', options);
 
-        L.tileLayer(
-            'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
-            {
-                attribution:
-                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-                subdomains: 'abcd',
-                maxZoom: 19,
-            }
-        ).addTo(map);
+        // L.tileLayer(
+        //     'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+        //     {
+        //         attribution:
+        //             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        //         subdomains: 'abcd',
+        //         maxZoom: 19,
+        //     }
+        // ).addTo(map);
 
         $.when(
                 $.getJSON('data/abq-urban.json'),
                 $.getJSON('data/parks.json'),
                 $.getJSON('data/open-space.json'),
                 $.getJSON('data/bike-paths-filtered.json')
-            ).done(function (urbanAreasData, parksData, openSpaceData, BikeTrailsData) {
-                L.geoJson(urbanAreasData).addTo(map);
-                L.geoJson(parksData).addTo(map);
-                L.geoJson(openSpaceData).addTo(map);
-                L.geoJson(BikeTrailsData).addTo(map);
+            ).done(function (urbanAreasData, parksData, openSpaceData, bikeTrailsData) {
+                L.geoJson(urbanAreasData, {
+                    style: urbanOptions,
+                }).addTo(map);
+                L.geoJson(parksData, {
+                    style: parksOptions,
+                }).addTo(map);
+                L.geoJson(openSpaceData, {
+                    style: openSpaceOptions
+                }).addTo(map);
+
+                L.geoJson(bikeTrailsData, {
+                // style each feature
+                style: function (feature) {
+                    // shortcut to variable
+                    let type = feature.properties.Path_Type;
+                    
+                     // assign options
+                return type === 'BikeBlvd'
+                    ? streetOptions
+                    : type === 'BikeRoute'
+                    ? streetOptions
+                    : type === 'BikeLane'
+                    ? laneOptions
+                    : type === 'Buffered Lane'
+                    ? laneOptions
+                    : type === 'Paved Multiple Use Trail'           
+                    ? pathOptions  
+                    : type === 'Unpaved Multiple Use Trail  An unpaved trail closed to automotive traffic.'                
+                    ? pathOptions  
+                    : otherBike;
+                }
+   
+                }).addTo(map);
             });
+          
+            const urbanOptions = {
+            color: '#BF9A84',
+            weight: 0,
+            };
+
+            const parksOptions = {
+            fillOpacity: 0.7,
+            fillColor: '#8C783B',
+            color: '#D9BC66',
+            weight: .2,
+            opacity: 1,
+            };
+
+            const openSpaceOptions = {
+            fillOpacity: 0.7,
+            fillColor: '#8C783B',
+            color: '#D9BC66',
+            weight: .2,
+            opacity: 1,
+            };
+
+            const streetOptions = {
+            color: '#000000',
+            weight: .1,
+            opacity: 1,
+            };
+
+            const laneOptions = {
+            color: '#ffffff',
+            weight: .1,
+            };
+
+            const pathOptions = {
+            color: '#ffffff',
+            weight: .1,
+            };
+
+            const otherBike = {
+            color: '#ffffff',
+            weight: .1,
+            opacity: 1
+            };
     </script>
 </body>
 
