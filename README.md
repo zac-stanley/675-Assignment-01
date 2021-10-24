@@ -61,3 +61,11 @@
 2. Extract the Albuquerque, NM from urban-areas.json `ogr2ogr -f "GeoJSON" -where "NAME10='Albuquerque, NM'" atlanta-urban.json urban-areas.json`
 3. To load this file into the map I need to add and commit to the filter-urban branch and push it to the remote `git push origin filter-urban`
 4. Review filter-urban branch on remote, create a pull request and merge changes with main branch.
+5. Fetch data from the remote because I accidentally created my abq-area.json on the filter-urban branch using `git fetch --all`
+6. Now the Leaflet map previews correctly.
+
+#### Filter and Generalize Bike Path Data
+1. Extract a subset of *bike-trail.json* to include current (non-proposed) trails that that are bike blvds, bike lanes, bike routes, buffered lanes, paved multi-use trails. and unpaved multi-use trails with the following command 
+`ogr2ogr -f "GeoJSON" -where  "PathType IN ( 'BikeBlvd - A shared roadway optimized by bicycle traffic.' ,  'BikeLane - A portion of the street with a designated lane for bicycles.' ,  'BikeRoute - Cars and bicycles share the street.' ,  'Buffered Lane - Conventional bike lanes paired with a designated buffer space.' ,  'Paved Multiple Use Trail - A paved trail closed to automotive traffic.' ,  'Unpaved Multiple Use Trail  An unpaved trail closed to automotive traffic.' )" bike-paths-filtered2.json bike-trails.json`
+2. Now that the data is filtered we will generalize it a bit with mapshaper
+3. We simplify the lines down to 5% STOPPED HERE 10/23/2021
