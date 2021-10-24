@@ -45,7 +45,17 @@
 #### Create Leaflet Basemap
 1. Add CSS, HTML and JavaScript to index.html to create a basic leaflet basemap
 
-#### Create a Branch for Fleshing Out Web Map
-1. Create new branch using `git checkout -b 'map-symbology'`
+#### Create a Branch for Fleshing Out Leaflet Map
+1. Create new branch using `git checkout -b 'map-symbology'` (**NOTE:** Map symbology was a bad title for this branch name)
 2. Load initial datasets into Leaflet using JQuery and the .when() method
-3. Once loaded merge this branch back to master
+3. Set zoom and extent in Leaflet
+4. Add and commit changes to 'map-symbology' branch berfore merging with main using `git add index.html` and `git commit -m "add data and set location for leaflet map`
+5. Once loaded merge this branch back to master with `git merge add map-symbology`
+6. Push the changes to the remote master using `git push origin main`
+7. Delete the 'map-symbology' branch using `git branch -d map-symbology`
+
+#### Create another Branch for Testing Data Size / Loading Speed
+1. Create new branch with `git checkout -b filter-urban`
+2. Extract the Albuquerque, NM from urban-areas.json `ogr2ogr -f "GeoJSON" -where "NAME10='Albuquerque, NM'" atlanta-urban.json urban-areas.json`
+3. To load this file into the map I need to add and commit to the filter-urban branch and push it to the remote `git push origin filter-urban`
+4. 
