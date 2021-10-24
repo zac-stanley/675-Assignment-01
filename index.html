@@ -53,10 +53,10 @@
         ).addTo(map);
 
         $.when(
-                $.getJSON('data/abq-areas.json'),
+                $.getJSON('data/abq-urban.json'),
                 $.getJSON('data/parks.json'),
                 $.getJSON('data/open-space.json'),
-                $.getJSON('data/bike-trails.json')
+                $.getJSON('data/bike-paths-filtered.json')
             ).done(function (urbanAreasData, parksData, openSpaceData, BikeTrailsData) {
                 L.geoJson(urbanAreasData).addTo(map);
                 L.geoJson(parksData).addTo(map);

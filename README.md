@@ -5,6 +5,8 @@
 3. Filter dataset so only Albuquerque cartographic boundary is displayed
 3. Verify that CRS on all datasets is 4326/WGS84
 4. Convert all data to geoJSON
+5. Filter urban area to only show Albuquerque, NM
+6. 
 
 #### Datasets and Sources:
 1. [Bike Paths ](http://coagisweb.cabq.gov/datadownload/biketrails.zip) - City of Albuquerque GIS
@@ -58,4 +60,4 @@
 1. Create new branch with `git checkout -b filter-urban`
 2. Extract the Albuquerque, NM from urban-areas.json `ogr2ogr -f "GeoJSON" -where "NAME10='Albuquerque, NM'" atlanta-urban.json urban-areas.json`
 3. To load this file into the map I need to add and commit to the filter-urban branch and push it to the remote `git push origin filter-urban`
-4. 
+4. Review filter-urban branch on remote, create a pull request and merge changes with main branch.
