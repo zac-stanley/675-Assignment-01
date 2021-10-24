@@ -76,17 +76,17 @@
                     let type = feature.properties.Path_Type;
                     
                      // assign options
-                return type === 'BikeBlvd'
+                return type === 'BikeBlvd '
                     ? streetOptions
-                    : type === 'BikeRoute'
+                    : type === 'BikeRoute '
                     ? streetOptions
-                    : type === 'BikeLane'
+                    : type === 'BikeLane '
                     ? laneOptions
-                    : type === 'Buffered Lane'
+                    : type === 'Buffered Lane '
                     ? laneOptions
-                    : type === 'Paved Multiple Use Trail'           
+                    : type === 'Paved Multiple Use Trail '           
                     ? pathOptions  
-                    : type === 'Unpaved Multiple Use Trail  An unpaved trail closed to automotive traffic.'                
+                    : type === 'Unpaved Multiple Use Trail  An unpaved trail closed to automotive traffic. '                
                     ? pathOptions  
                     : otherBike;
                 }
@@ -115,20 +115,20 @@
             opacity: 1,
             };
 
-            const streetOptions = {
-            color: '#000000',
-            weight: .1,
-            opacity: 1,
+            const pathOptions = {
+            color: '#F24C27',
+            weight: 1.5,
             };
 
             const laneOptions = {
-            color: '#ffffff',
-            weight: .1,
+            color: '#000000',
+            weight: .6,
             };
 
-            const pathOptions = {
-            color: '#ffffff',
-            weight: .1,
+            const streetOptions = {
+            color: '#000000',
+            weight: .4,
+            opacity: .7,
             };
 
             const otherBike = {
