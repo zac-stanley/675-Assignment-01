@@ -68,7 +68,11 @@
 1. Extract a subset of *bike-trail.json* to include current (non-proposed) trails that that are bike blvds, bike lanes, bike routes, buffered lanes, paved multi-use trails. and unpaved multi-use trails with the following command 
 `ogr2ogr -f "GeoJSON" -where  "PathType IN ( 'BikeBlvd - A shared roadway optimized by bicycle traffic.' ,  'BikeLane - A portion of the street with a designated lane for bicycles.' ,  'BikeRoute - Cars and bicycles share the street.' ,  'Buffered Lane - Conventional bike lanes paired with a designated buffer space.' ,  'Paved Multiple Use Trail - A paved trail closed to automotive traffic.' ,  'Unpaved Multiple Use Trail  An unpaved trail closed to automotive traffic.' )" bike-paths-filtered2.json bike-trails.json`
 2. Now that the data is filtered we will generalize it a bit with mapshaper
-3. We simplify the lines, download exported data and add it to the Leaflet map
+3. We simplify the lines, download exported data and add it to the Leaflet map as *bike-paths.-filtered.json*
 
 #### Web Cartography Time
-1. 
+1. Set map background
+2. Add layers to map
+3. Symbolize *bike-paths-filtered.json* to achieve figure ground representation assigning different option based on bike path type from the 'Path-Type' feature
+4. Add tooltips to parks and open-space jsons.
+5. Update the CSS for tooltip to overwrite the defaults.

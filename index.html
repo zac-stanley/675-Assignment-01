@@ -21,6 +21,13 @@
             padding: 0;
             background: rgba( 64, 40, 26)
         }
+
+        .tooltip {
+            color: white;
+            background: rgba( 64, 40, 26);
+            border: 0;
+            font-size: 1.3em;
+            }
     </style>
 </head>
 
@@ -64,9 +71,47 @@
                 }).addTo(map);
                 L.geoJson(parksData, {
                     style: parksOptions,
+                    onEachFeature: function (feature, layer) {
+                        // shortut to variable
+                        let tooltip = feature.properties.Name;
+                        // bind the tooltip to the layer
+                        layer.bindTooltip(tooltip, {
+                            sticky: true,
+                            className: 'tooltip',
+                        });
+                        // visual affordance on mouseover
+                        layer.on('mouseover', function (e) {
+                            this.setStyle({
+                            fillOpacity: 0.1,
+                            });
+                        });
+                        // use existing option to reset the styles on mouseout
+                        layer.on('mouseout', function (e) {
+                            this.setStyle(parksOptions);
+                        });
+                        },
                 }).addTo(map);
                 L.geoJson(openSpaceData, {
-                    style: openSpaceOptions
+                    style: openSpaceOptions,
+                    onEachFeature: function (feature, layer) {
+                        // shortut to variable
+                        let tooltip = feature.properties.Name;
+                        // bind the tooltip to the layer
+                        layer.bindTooltip(tooltip, {
+                            sticky: true,
+                            className: 'tooltip',
+                        });
+                        // visual affordance on mouseover
+                        layer.on('mouseover', function (e) {
+                            this.setStyle({
+                            fillOpacity: 0.9,
+                            });
+                        });
+                        // use existing option to reset the styles on mouseout
+                        layer.on('mouseout', function (e) {
+                            this.setStyle(openSpaceOptions);
+                        });
+                        },
                 }).addTo(map);
 
                 L.geoJson(bikeTrailsData, {
@@ -116,13 +161,14 @@
             };
 
             const pathOptions = {
-            color: '#F24C27',
-            weight: 1.5,
+            color: '#260F07',
+            weight: 1.8,
             };
 
             const laneOptions = {
             color: '#000000',
-            weight: .6,
+            weight: .9,
+            opacity: .5
             };
 
             const streetOptions = {
