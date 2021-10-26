@@ -50,15 +50,17 @@
 
         const map = L.map('map', options);
 
-        // L.tileLayer(
-        //     'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
-        //     {
-        //         attribution:
-        //             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-        //         subdomains: 'abcd',
-        //         maxZoom: 19,
-        //     }
-        // ).addTo(map);
+        map.createPane('labels');
+            map.getPane('labels').style.zIndex = 650;
+            map.getPane('labels').style.pointerEvents = 'none';
+
+            L.tileLayer(
+                'https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',
+                {
+                    attribution: '©OpenStreetMap, ©CartoDB',
+                    pane: 'labels',
+                }
+            ).addTo(map);
 
         $.when(
                 $.getJSON('data/abq-urban.json'),
@@ -82,7 +84,8 @@
                         // visual affordance on mouseover
                         layer.on('mouseover', function (e) {
                             this.setStyle({
-                            fillOpacity: 0.1,
+                            fillColor: '#ffffff',
+                            fillOpacity: 0.5,
                             });
                         });
                         // use existing option to reset the styles on mouseout
@@ -104,7 +107,8 @@
                         // visual affordance on mouseover
                         layer.on('mouseover', function (e) {
                             this.setStyle({
-                            fillOpacity: 0.9,
+                            fillColor: '#ffffff',
+                            fillOpacity: 0.5,
                             });
                         });
                         // use existing option to reset the styles on mouseout
